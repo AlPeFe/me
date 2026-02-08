@@ -1,96 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hero Profile</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Polaper-Alpefe</title>
+  <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+  <link rel="stylesheet" href="polaper.css">
+  <link rel="stylesheet" href="makeitrain.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
 </head>
-<body class="bg-gray-900 min-h-screen">
+
+<body>
+  <script src="polaperrain.js"></script>
+  <script src="https://webneko.net/n20171213.js"></script>
+  <h1 id="nl">
+    <a href="https://webneko.net">Neko</a>
+  </h1>
+  
   <div id="app">
-    <div class="flex flex-col items-center justify-center min-h-screen px-4">
-      <div class="text-center">
-        <img
-          src="prgm.jpg"
-          alt="Profile Avatar"
-          class="w-48 h-48 rounded-full border-4 border-indigo-500 mx-auto mb-6"
-        >
-        <h1 class="text-4xl font-bold text-white mb-2">{{ name }}</h1>
-        <p class="text-indigo-400 text-lg mb-6">{{ title }}</p>
-        
-        <nav class="flex items-center justify-center gap-3 mb-8">
-          <span
-            @click="currentPage = 'home'"
-            :class="currentPage === 'home' ? 'text-indigo-400 font-semibold' : 'text-gray-400 hover:text-white'"
-            class="cursor-pointer transition-colors"
-          >
-            Home
-          </span>
-          <span class="text-gray-600 text-xl">•</span>
-          <span
-            @click="currentPage = 'projects'"
-            :class="currentPage === 'projects' ? 'text-indigo-400 font-semibold' : 'text-gray-400 hover:text-white'"
-            class="cursor-pointer transition-colors"
-          >
-            Projects
-          </span>
-          <span class="text-gray-600 text-xl">•</span>
-          <span
-            @click="currentPage = 'roadmap'"
-            :class="currentPage === 'roadmap' ? 'text-indigo-400 font-semibold' : 'text-gray-400 hover:text-white'"
-            class="cursor-pointer transition-colors"
-          >
-            Roadmap
-          </span>
-        </nav>
-
-        <div class="bg-gray-800 rounded-lg p-6 max-w-lg mx-auto">
-          <div v-if="currentPage === 'home'" class="text-gray-300 leading-relaxed">
-            <p class="mb-6">{{ bio }}</p>
-            <a href="mailto:alexpf.kyon@gmail.com" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors">
-              Contact Me
-            </a>
-          </div>
-          <div v-else-if="currentPage === 'projects'" class="text-gray-300 leading-relaxed">
-            <a href="https://github.com/AlPeFe" target="_blank" rel="noopener noreferrer" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors">
-              Visit my GitHub
-            </a>
-          </div>
-          <div v-else-if="currentPage === 'roadmap'" class="text-gray-300 leading-relaxed">
-            <h2 class="text-2xl font-bold text-white mb-4">Roadmap</h2>
-            <ul class="space-y-4">
-              <li class="flex items-start">
-                <span class="text-indigo-400 mr-2">•</span>
-                <span>Keep learning about AI</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-indigo-400 mr-2">•</span>
-                <span>Keep learning about AppSec</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-indigo-400 mr-2">•</span>
-                <span>Get CompTIA Security+ certification</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <main-layout></main-layout>
   </div>
+  
+  <!-- Vue.js script OUTSIDE the #app div -->
+  <script type="module">
+    import MainLayout from './components/MainLayout.js';
+    import Marquee from './components/Marquee.js';
+    import AboutSection from './components/AboutSection.js';
+    import TodoList from './components/TodoList.js';
+    import SiteFooter from './components/SiteFooter.js';
+    import Calendar from './components/Calendar.js';
+    import Navigation from './components/Navigation.js';
+    import RightImages from './components/RightImages.js';
+    import Carousel from './components/Carousel.js';
 
-  <script>
-    const { createApp } = Vue
-    createApp({
-      data() {
-        return {
-          currentPage: 'home',
-          name: 'Alex Perez',
-          title: '.NET dev and AppSec',
-          bio: "I've been programming for quite a while and have built a lot of things along the way, especially in healthcare and other business-heavy, domain-rich environments. I work mainly with .NET and feel comfortable creating pretty much anything with it. I'm into technology in general, and these days I'm focusing more on Artificial Intelligence and Application Security (AppSec)."
-        }
-      }
-    }).mount('#app')
+    const { createApp } = Vue;
+    createApp({})
+      .component('main-layout', MainLayout)
+      .component('marquee', Marquee)
+      .component('about-section', AboutSection)
+      .component('todo-list', TodoList)
+      .component('site-footer', SiteFooter)
+      .component('calendar', Calendar)
+      .component('navigation', Navigation)
+      .component('right-images', RightImages)
+      .component('carousel', Carousel)
+      .mount('#app');
   </script>
 </body>
 </html>
