@@ -1,0 +1,25 @@
+.rain-animation {
+   position: fixed;  
+  top: -200px; /* start off-screen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: auto;
+  pointer-events: none;
+
+  animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    top: -200px;
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+  }
+}
