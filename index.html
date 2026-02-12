@@ -1,478 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>alex@portfolio:~$</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <style>
-        :root {
-            --bg: #000000;
-            --bg-dim: #0a0a0a;
-            --text: #e0e0e0;
-            --text-dim: #666666;
-            --accent: #00aa55;
-            --accent-bright: #00dd6a;
-            --border: #333333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Noto Sans Mono', monospace;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        #app {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        .terminal {
-            flex: 1;
-        }
-
-        /* Header */
-        .header {
-            margin-bottom: 2rem;
-        }
-
-        .header-title {
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .header-subtitle {
-            color: var(--text-dim);
-        }
-
-        /* Navigation */
-        .nav {
-            display: flex;
-            gap: 0;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-
-        .nav-item {
-            background: transparent;
-            border: none;
-            color: var(--text-dim);
-            padding: 0.2rem 0.5rem;
-            font-family: inherit;
-            font-size: 0.9rem;
-            cursor: pointer;
-            text-decoration: underline;
-            text-decoration-color: transparent;
-            transition: all 0.1s ease;
-        }
-
-        .nav-item:hover {
-            color: var(--accent);
-            text-decoration-color: var(--accent);
-        }
-
-        .nav-item.active {
-            color: var(--accent-bright);
-            text-decoration-color: var(--accent-bright);
-        }
-
-        /* Prompt line */
-        .prompt-line {
-            display: flex;
-            align-items: baseline;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .prompt-user {
-            color: var(--accent);
-        }
-
-        .prompt-path {
-            color: var(--text);
-        }
-
-        .prompt-symbol {
-            color: var(--accent);
-        }
-
-        /* Output */
-        .output {
-            color: var(--text);
-            margin-bottom: 1.5rem;
-        }
-
-        .output p {
-            margin-bottom: 0.5rem;
-        }
-
-        .output p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Divider */
-        .divider {
-            color: var(--border);
-            margin: 1.5rem 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        /* Lists */
-        .list {
-            list-style: none;
-        }
-
-        .list li {
-            padding: 0.2rem 0;
-            display: flex;
-            align-items: baseline;
-            gap: 0.75rem;
-        }
-
-        .list li::before {
-            content: '>';
-            color: var(--accent);
-        }
-
-        /* Tags */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            color: var(--accent);
-        }
-
-        .tag::before {
-            content: '[';
-            color: var(--text-dim);
-        }
-
-        .tag::after {
-            content: ']';
-            color: var(--text-dim);
-        }
-
-        /* Links */
-        .link {
-            color: var(--accent);
-            text-decoration: underline;
-            text-decoration-color: var(--accent);
-        }
-
-        .link:hover {
-            color: var(--accent-bright);
-            text-decoration-color: var(--accent-bright);
-        }
-
-        /* Social list */
-        .social-list {
-            list-style: none;
-        }
-
-        .social-list li {
-            padding: 0.3rem 0;
-        }
-
-        .social-list a {
-            color: var(--text);
-            text-decoration: none;
-            display: flex;
-            align-items: baseline;
-            gap: 1rem;
-        }
-
-        .social-list a:hover {
-            color: var(--accent);
-        }
-
-        .social-list a::before {
-            content: '→';
-            color: var(--accent);
-        }
-
-        .social-url {
-            color: var(--text-dim);
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
-            color: var(--text-dim);
-            font-size: 0.85rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Cursor */
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 1.1em;
-            background: var(--accent);
-            animation: blink 1s step-end infinite;
-            vertical-align: middle;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        /* Selection */
-        ::selection {
-            background: var(--accent);
-            color: var(--bg);
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--border);
-        }
-
-        /* Transitions */
-        .fade-enter-active,
-        .fade-leave-active {
-            transition: opacity 0.15s ease;
-        }
-
-        .fade-enter-from,
-        .fade-leave-to {
-            opacity: 0;
-        }
-
-        /* Mobile */
-        @media (max-width: 500px) {
-            #app {
-                padding: 1.5rem 0.75rem;
-            }
-        }
-    </style>
-<base target="_blank">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Polaper-Alpefe</title>
+  <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+  <link rel="stylesheet" href="polaper.css">
+  <link rel="stylesheet" href="makeitrain.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
 </head>
+
 <body>
-    <div id="app">
-        <div class="terminal">
-            <!-- Header -->
-            <header class="header">
-                <div class="header-title">alex@portfolio</div>
-                <div class="header-subtitle">software developer</div>
-            </header>
+  <script src="polaperrain.js"></script>
+  <script src="https://webneko.net/n20171213.js"></script>
+  <h1 id="nl">
+    <a href="https://webneko.net">Neko</a>
+  </h1>
+  
+  <div id="app">
+    <main-layout></main-layout>
+  </div>
+  
+  <!-- Vue.js script OUTSIDE the #app div -->
+  <script type="module">
+    import MainLayout from './components/MainLayout.js';
+    import Marquee from './components/Marquee.js';
+    import AboutSection from './components/AboutSection.js';
+    import TodoList from './components/TodoList.js';
+    import SiteFooter from './components/SiteFooter.js';
+    import Calendar from './components/Calendar.js';
+    import Navigation from './components/Navigation.js';
+    import RightImages from './components/RightImages.js';
+    import Carousel from './components/Carousel.js';
 
-            <!-- Navigation -->
-            <div class="prompt-line">
-                <span class="prompt-user">alex</span>
-                <span class="prompt-path">~</span>
-                <span class="prompt-symbol">$</span>
-                <span>ls sections/</span>
-            </div>
-            <div class="nav">
-                <button 
-                    v-for="tab in tabs" 
-                    :key="tab.id"
-                    class="nav-item"
-                    :class="{ active: currentTab === tab.id }"
-                    @click="currentTab = tab.id"
-                >
-                    {{ tab.id }}
-                </button>
-            </div>
-
-            <!-- Main Content -->
-            <transition name="fade" mode="out-in">
-                <!-- About Section -->
-                <div v-if="currentTab === 'about'" key="about">
-                    <div class="prompt-line">
-                        <span class="prompt-user">alex</span>
-                        <span class="prompt-path">~</span>
-                        <span class="prompt-symbol">$</span>
-                        <span>whoami</span>
-                    </div>
-                    <div class="output">
-                        <p>Software developer with experience building systems in healthcare and business-heavy, domain-rich environments.</p>
-                        <p>Primary stack is .NET — comfortable building pretty much anything with it.</p>
-                        <p>Currently focused on AI Engineering and cybersecurity.</p>
-                    </div>
-
-                    <div class="divider">────────────────────────────────────────</div>
-
-                    <div class="prompt-line">
-                        <span class="prompt-user">alex</span>
-                        <span class="prompt-path">~</span>
-                        <span class="prompt-symbol">$</span>
-                        <span>cat tech_stack.txt</span>
-                    </div>
-                    <div class="output">
-                        <ul class="list">
-                            <li>.NET / C#</li>
-                            <li>ASP.NET Core</li>
-                            <li>Entity Framework</li>
-                            <li>SQL Server</li>
-                            <li>AI Engineer</li>
-                            <li>Cybersecurity</li>
-                        </ul>
-                    </div>
-
-                    <div class="divider">────────────────────────────────────────</div>
-
-                    <div class="prompt-line">
-                        <span class="prompt-user">alex</span>
-                        <span class="prompt-path">~</span>
-                        <span class="prompt-symbol">$</span>
-                        <span>cat domains.txt</span>
-                    </div>
-                    <div class="output">
-                        <div class="tags">
-                            <span class="tag">Healthcare</span>
-                            <span class="tag">Business Applications</span>
-                            <span class="tag">Enterprise</span>
-                            <span class="tag">AI Integration</span>
-                            <span class="tag">Security</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Social Section -->
-                <div v-else-if="currentTab === 'socials'" key="socials">
-                    <div class="prompt-line">
-                        <span class="prompt-user">alex</span>
-                        <span class="prompt-path">~</span>
-                        <span class="prompt-symbol">$</span>
-                        <span>ls -la ~/socials</span>
-                    </div>
-                    <div class="output">
-                        <p>total 3</p>
-                    </div>
-
-                    <ul class="social-list">
-                        <li>
-                            <a href="https://github.com/AlPeFe" target="_blank" rel="noopener">
-                                <span>github</span>
-                                <span class="social-url">→ github.com/AlPeFe</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.instagram.com/alpefe.exe" target="_blank" rel="noopener">
-                                <span>instagram</span>
-                                <span class="social-url">→ @alpefe.exe</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/in/alex-p%C3%A9rez-ferreira-a790b0236/" target="_blank" rel="noopener">
-                                <span>linkedin</span>
-                                <span class="social-url">→ Alex Pérez Ferreira</span>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <div class="divider">────────────────────────────────────────</div>
-
-                    <div class="prompt-line">
-                        <span class="prompt-user">alex</span>
-                        <span class="prompt-path">~</span>
-                        <span class="prompt-symbol">$</span>
-                        <span>echo "Let's connect"</span>
-                    </div>
-                    <div class="output">
-                        <p>Let's connect</p>
-                    </div>
-                </div>
-
-                <!-- Contact Section -->
-                <div v-else-if="currentTab === 'contact'" key="contact">
-                    <div class="prompt-line">
-                        <span class="prompt-user">alex</span>
-                        <span class="prompt-path">~</span>
-                        <span class="prompt-symbol">$</span>
-                        <span>cat contact.md</span>
-                    </div>
-                    <div class="output">
-                        <p>Open to collaborations, project discussions, or tech conversations.</p>
-                        <p>Best reach:</p>
-                        <ul class="list">
-                            <li><a href="https://www.linkedin.com/in/alex-p%C3%A9rez-ferreira-a790b0236/" target="_blank" rel="noopener" class="link">LinkedIn</a></li>
-                            <li><a href="https://github.com/AlPeFe" target="_blank" rel="noopener" class="link">GitHub</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="divider">────────────────────────────────────────</div>
-
-                    <div class="prompt-line">
-                        <span class="prompt-user">alex</span>
-                        <span class="prompt-path">~</span>
-                        <span class="prompt-symbol">$</span>
-                        <span>cat availability.status</span>
-                    </div>
-                    <div class="output">
-                        <ul class="list">
-                            <li>Open to interesting projects</li>
-                            <li>Focused on AI and cybersecurity</li>
-                        </ul>
-                    </div>
-                </div>
-            </transition>
-
-            <!-- Footer -->
-            <footer class="footer">
-                <div>alex@portfolio — <span class="cursor"></span></div>
-                <div class="footer-links">
-                    <a href="https://github.com/AlPeFe" target="_blank" rel="noopener" class="link">github</a>
-                    <a href="https://www.instagram.com/alpefe.exe" target="_blank" rel="noopener" class="link">instagram</a>
-                    <a href="https://www.linkedin.com/in/alex-p%C3%A9rez-ferreira-a790b0236/" target="_blank" rel="noopener" class="link">linkedin</a>
-                </div>
-            </footer>
-        </div>
-    </div>
-
-    <script>
-        const { createApp } = Vue;
-
-        createApp({
-            data() {
-                return {
-                    currentTab: 'about',
-                    tabs: [
-                        { id: 'about' },
-                        { id: 'socials' },
-                        { id: 'contact' }
-                    ]
-                };
-            }
-        }).mount('#app');
-    </script>
+    const { createApp } = Vue;
+    createApp({})
+      .component('main-layout', MainLayout)
+      .component('marquee', Marquee)
+      .component('about-section', AboutSection)
+      .component('todo-list', TodoList)
+      .component('site-footer', SiteFooter)
+      .component('calendar', Calendar)
+      .component('navigation', Navigation)
+      .component('right-images', RightImages)
+      .component('carousel', Carousel)
+      .mount('#app');
+  </script>
 </body>
 </html>
