@@ -1,349 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #000000;
-            --surface: #0a0a0a;
-            --border: #1a1a1a;
-            --text-primary: #ffffff;
-            --text-secondary: #999999;
-            --accent: #ffb3d9;
-            --accent-hover: #ff99cc;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-primary);
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 14px;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header - compact and utilitarian */
-        header {
-            padding: 48px 0 24px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        h1 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
-        }
-
-        .title-suffix {
-            color: var(--accent);
-        }
-
-        .tagline {
-            font-size: 13px;
-            color: var(--text-secondary);
-            font-family: 'IBM Plex Mono', monospace;
-            letter-spacing: 0.3px;
-        }
-
-        /* Navigation tabs */
-        nav {
-            display: flex;
-            gap: 0;
-            margin-top: 16px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav a {
-            padding: 8px 16px;
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: all 0.15s ease;
-        }
-
-        nav a:first-child {
-            padding-left: 0;
-        }
-
-        nav a:hover,
-        nav a.active {
-            color: var(--text-primary);
-            border-bottom-color: var(--accent);
-        }
-
-        /* Section blocks */
-        section {
-            padding: 32px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        h2 {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-        }
-
-        p {
-            margin-bottom: 12px;
-            color: var(--text-primary);
-        }
-
-        /* Grid system for compact layout */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 16px 24px;
-            margin-bottom: 16px;
-        }
-
-        .info-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-secondary);
-            padding-top: 2px;
-        }
-
-        .info-value {
-            font-size: 14px;
-            color: var(--text-primary);
-        }
-
-        /* Project list - table-like structure */
-        .project-list {
-            display: grid;
-            gap: 0;
-        }
-
-        .project {
-            display: grid;
-            grid-template-columns: 60px 1fr;
-            gap: 16px;
-            padding: 12px 0;
-            border-top: 1px solid var(--border);
-            transition: background-color 0.1s ease;
-        }
-
-        .project:first-child {
-            border-top: none;
-        }
-
-        .project:hover {
-            background-color: rgba(255, 255, 255, 0.02);
-        }
-
-        .project-year {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            color: var(--text-secondary);
-            padding-top: 2px;
-        }
-
-        .project-content h3 {
-            font-size: 15px;
-            font-weight: 500;
-            margin-bottom: 4px;
-            color: var(--text-primary);
-        }
-
-        .project-content p {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin: 0;
-            line-height: 1.4;
-        }
-
-        /* Links - IBM style */
-        a.link {
-            color: var(--accent);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.15s ease;
-        }
-
-        a.link:hover {
-            border-bottom-color: var(--accent);
-        }
-
-        /* Contact section */
-        .contact-list {
-            list-style: none;
-        }
-
-        .contact-list li {
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        .contact-list a {
-            color: var(--accent);
-            text-decoration: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13px;
-        }
-
-        .contact-list a:hover {
-            text-decoration: underline;
-        }
-
-        /* Skills tags */
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
-        }
-
-        .skill-tag {
-            padding: 4px 12px;
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            font-size: 11px;
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Footer */
-        footer {
-            padding: 32px 0;
-            font-size: 11px;
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--text-secondary);
-            text-align: center;
-            letter-spacing: 0.5px;
-        }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            .container {
-                padding: 0 16px;
-            }
-
-            header {
-                padding: 32px 0 16px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-
-            .info-label {
-                margin-bottom: 4px;
-            }
-
-            .project {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-
-            nav a {
-                padding: 8px 12px;
-                font-size: 11px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Polaper-Alpefe</title>
+  <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+  <link rel="stylesheet" href="polaper.css">
+  <link rel="stylesheet" href="makeitrain.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>ALEX_PÉREZ<span class="title-suffix">_</span></h1>
-            <p class="tagline">SOFTWARE ENGINEER / PRODUCT DESIGNER / AI SPECIALIST</p>
-            <nav>
-                <a href="#about" class="active">About</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </header>
+  <script src="polaperrain.js"></script>
+  <script src="https://webneko.net/n20171213.js"></script>
+  <h1 id="nl">
+    <a href="https://webneko.net">Neko</a>
+  </h1>
+  
+  <div id="app">
+    <main-layout></main-layout>
+  </div>
+  
+  <!-- Vue.js script OUTSIDE the #app div -->
+  <script type="module">
+    import MainLayout from './components/MainLayout.js';
+    import Marquee from './components/Marquee.js';
+    import AboutSection from './components/AboutSection.js';
+    import TodoList from './components/TodoList.js';
+    import SiteFooter from './components/SiteFooter.js';
+    import Calendar from './components/Calendar.js';
+    import Navigation from './components/Navigation.js';
+    import RightImages from './components/RightImages.js';
+    import Carousel from './components/Carousel.js';
 
-        <section id="about">
-            <h2>Profile</h2>
-            <div class="info-grid">
-                <div class="info-label">Focus</div>
-                <div class="info-value">Software engineering, architecture, product design</div>
-                
-                <div class="info-label">Current</div>
-                <div class="info-value">Senior Software Engineer at Original Soft</div>
-            </div>
-            <p>Leading AI transformation and implementation within the company, currently focused on building agents to integrate with existing products. Specializing in AI while taking a new path in cybersecurity. Working in the healthcare transportation sector.</p>
-            
-            <div class="skills">
-                <span class="skill-tag">Azure</span>
-                <span class="skill-tag">.NET</span>
-                <span class="skill-tag">SQL Server</span>
-                <span class="skill-tag">Agent Framework</span>
-                <span class="skill-tag">Semantic Kernel</span>
-                <span class="skill-tag">AI/ML</span>
-                <span class="skill-tag">Cybersecurity</span>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <ul class="contact-list">
-                <li><a href="mailto:alexpf.kyon@gmail.com">alexpf.kyon@gmail.com</a></li>
-                <li><a href="https://github.com/">github.com</a></li>
-                <li><a href="https://www.linkedin.com/in/alex-p%C3%A9rez-ferreira-a790b0236/">linkedin.com/in/alex-pérez-ferreira</a></li>
-                <li><a href="https://www.instagram.com/alpefe.exe">instagram.com/alpefe.exe</a></li>
-            </ul>
-        </section>
-
-        <footer>
-            © 2025 ALEX PÉREZ
-        </footer>
-    </div>
-
-    <script>
-        // Smooth scroll for navigation
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    
-                    // Update active state
-                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-                    this.classList.add('active');
-                }
-            });
-        });
-    </script>
+    const { createApp } = Vue;
+    createApp({})
+      .component('main-layout', MainLayout)
+      .component('marquee', Marquee)
+      .component('about-section', AboutSection)
+      .component('todo-list', TodoList)
+      .component('site-footer', SiteFooter)
+      .component('calendar', Calendar)
+      .component('navigation', Navigation)
+      .component('right-images', RightImages)
+      .component('carousel', Carousel)
+      .mount('#app');
+  </script>
 </body>
 </html>
