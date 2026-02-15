@@ -6,8 +6,9 @@
   border-color: #ffffff #000000 #000000 #ffffff;
   box-shadow: 1px 1px 0 #808080;
   padding: 2px;
-  margin: 10px auto;
+  margin: 0;
   max-width: 800px;
+  width: 100%;
 }
 
 .win95-title-bar {

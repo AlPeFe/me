@@ -75,7 +75,7 @@ body {
 }
 
 #contentBox {
-  width: 800px;
+  width: 100%;
   color: #000;
   height: auto;
   box-sizing: border-box;
