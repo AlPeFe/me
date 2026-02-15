@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Polaper-Alpefe - Windows 95</title>
+  <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+  <link rel="stylesheet" href="polaper.css">
+  <link rel="stylesheet" href="windows95.css">
+  <link rel="stylesheet" href="makeitrain.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+</head>
+
+<body>
+  <script src="polaperrain.js"></script>
+  <script src="https://webneko.net/n20171213.js"></script>
+  <h1 id="nl">
+    <a href="https://webneko.net">Neko</a>
+  </h1>
+  
+  <div id="app">
+    <main-layout></main-layout>
+  </div>
+  
+  <!-- Vue.js script OUTSIDE the #app div -->
+  <script type="module">
+    import MainLayout from './components/MainLayout.js';
+    import Marquee from './components/Marquee.js';
+    import AboutSection from './components/AboutSection.js';
+    import TodoList from './components/TodoList.js';
+    import SiteFooter from './components/SiteFooter.js';
+    import Calendar from './components/Calendar.js';
+    import Navigation from './components/Navigation.js';
+    import RightImages from './components/RightImages.js';
+    import Carousel from './components/Carousel.js';
+    import Taskbar from './components/Taskbar.js';
+
+    const { createApp } = Vue;
+    createApp({})
+      .component('main-layout', MainLayout)
+      .component('marquee', Marquee)
+      .component('about-section', AboutSection)
+      .component('todo-list', TodoList)
+      .component('site-footer', SiteFooter)
+      .component('calendar', Calendar)
+      .component('navigation', Navigation)
+      .component('right-images', RightImages)
+      .component('carousel', Carousel)
+      .component('taskbar', Taskbar)
+      .mount('#app');
+  </script>
+</body>
+</html>

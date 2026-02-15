@@ -1,0 +1,359 @@
+/* Windows 95 Styles */
+
+.win95-window {
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  box-shadow: 1px 1px 0 #808080;
+  padding: 2px;
+  margin: 10px auto;
+  max-width: 800px;
+}
+
+.win95-title-bar {
+  background: linear-gradient(90deg, #000080, #1084d0);
+  color: #ffffff;
+  font-weight: bold;
+  padding: 3px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+}
+
+.win95-title-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.win95-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.win95-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.win95-button {
+  width: 16px;
+  height: 14px;
+  background-color: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+}
+
+.win95-button:active {
+  border-color: #000000 #ffffff #ffffff #000000;
+}
+
+.win95-content {
+  background-color: #ffffff;
+  padding: 10px;
+  min-height: 200px;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.win95-menu-bar {
+  background-color: #c0c0c0;
+  border-bottom: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 2px;
+  display: flex;
+  gap: 10px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.win95-menu-item {
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.win95-menu-item:hover {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+.win95-status-bar {
+  background-color: #c0c0c0;
+  border-top: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 2px 5px;
+  display: flex;
+  gap: 10px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.win95-status-section {
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 2px 5px;
+  flex: 1;
+}
+
+/* Windows 95 Button Style */
+.win95-btn {
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  padding: 4px 12px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  min-width: 75px;
+}
+
+.win95-btn:active {
+  border-color: #000000 #ffffff #ffffff #000000;
+  padding: 5px 11px 3px 13px;
+}
+
+.win95-btn:focus {
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+
+/* Windows 95 Input Fields */
+.win95-input {
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 3px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  background-color: #ffffff;
+}
+
+/* Windows 95 Scrollbar */
+.win95-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #c0c0c0 #ffffff;
+}
+
+.win95-scrollbar::-webkit-scrollbar {
+  width: 16px;
+}
+
+.win95-scrollbar::-webkit-scrollbar-track {
+  background: #ffffff;
+  border: 1px solid #808080;
+}
+
+.win95-scrollbar::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+}
+
+.win95-scrollbar::-webkit-scrollbar-button {
+  background: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  height: 16px;
+}
+
+/* Windows 95 Tabs */
+.win95-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: -2px;
+}
+
+.win95-tab {
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #000000 transparent #ffffff;
+  padding: 4px 12px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.win95-tab.active {
+  background-color: #ffffff;
+  border-bottom-color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+/* Windows 95 Panel */
+.win95-panel {
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.win95-panel-inset {
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 8px;
+  margin: 5px 0;
+}
+
+/* Windows 95 Groupbox */
+.win95-groupbox {
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 10px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.win95-groupbox-title {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background-color: #c0c0c0;
+  padding: 0 5px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* Windows 95 List */
+.win95-listbox {
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 2px;
+  min-height: 100px;
+  overflow-y: auto;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+}
+
+.win95-list-item {
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.win95-list-item:hover {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+.win95-list-item.selected {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+/* Desktop Icon Style */
+.win95-desktop-icon {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.win95-desktop-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+.win95-desktop-icon span {
+  color: #ffffff;
+  text-shadow: 1px 1px 2px #000000;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  background-color: transparent;
+}
+
+.win95-desktop-icon.selected span {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+/* Adapt original styles for Windows 95 context */
+.win95-content .grad1 {
+  background: linear-gradient(90deg, #000080, #1084d0);
+  color: #ffffff;
+  padding: 3px 8px;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  margin: 8px 0 4px 0;
+  border: 1px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+}
+
+.win95-content .nezukocontent {
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 10px;
+  margin: 5px 0;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+}
+
+/* Windows 95 Taskbar Style */
+.win95-taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  gap: 2px;
+  z-index: 1000;
+}
+
+.win95-start-button {
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  padding: 2px 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  height: 22px;
+}
+
+.win95-start-button:active {
+  border-color: #000000 #ffffff #ffffff #000000;
+}
+
+.win95-taskbar-divider {
+  width: 2px;
+  height: 22px;
+  background: linear-gradient(90deg, #808080, #ffffff);
+  margin: 0 2px;
+}
+
+.win95-clock {
+  margin-left: auto;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 2px 8px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+}
