@@ -5,9 +5,10 @@ import Navigation from './Navigation.js';
 import RightImages from './RightImages.js';
 import Carousel from './Carousel.js';
 import Taskbar from './Taskbar.js';
+import DesktopIcons from './DesktopIcons.js';
 
 export default {
-  components: { AboutSection, TodoList, Calendar, Navigation, RightImages, Carousel, Taskbar },
+  components: { AboutSection, TodoList, Calendar, Navigation, RightImages, Carousel, Taskbar, DesktopIcons },
   setup() {
     const { ref, onMounted, onBeforeUnmount } = Vue;
     const now = new Date();
@@ -108,13 +109,14 @@ export default {
   },
   template: `
     <div>
+      <desktop-icons></desktop-icons>
       <div id="container">
         <div id="contentBox">
           <div class="win95-window">
             <div class="win95-title-bar">
               <div class="win95-title-text">
-                <span>⊞</span>
-                <span>Polaper.exe - [About Me]</span>
+                <span>🌐</span>
+                <span>Polaper's Homepage - Microsoft Internet Explorer</span>
               </div>
               <div class="win95-controls">
                 <div class="win95-button">_</div>
@@ -126,7 +128,21 @@ export default {
               <div class="win95-menu-item">File</div>
               <div class="win95-menu-item">Edit</div>
               <div class="win95-menu-item">View</div>
+              <div class="win95-menu-item">Favorites</div>
+              <div class="win95-menu-item">Tools</div>
               <div class="win95-menu-item">Help</div>
+            </div>
+            <div class="ie-toolbar">
+              <div class="ie-nav-button" title="Back">◀ Back</div>
+              <div class="ie-nav-button" title="Forward">▶ Forward</div>
+              <div class="ie-nav-button" title="Stop">⬛ Stop</div>
+              <div class="ie-nav-button" title="Refresh">↻ Refresh</div>
+              <div class="ie-nav-button" title="Home">🏠 Home</div>
+            </div>
+            <div class="ie-address-bar">
+              <span class="ie-address-label">Address</span>
+              <input type="text" class="ie-address-input" value="http://polaper.geocities.com/index.html" readonly />
+              <button class="ie-go-button">Go</button>
             </div>
             <div class="win95-content win95-scrollbar">
               <div class="main-layout">
@@ -150,8 +166,8 @@ export default {
               </div>
             </div>
             <div class="win95-status-bar">
-              <div class="win95-status-section">Ready</div>
-              <div class="win95-status-section" style="flex: 0 0 auto; width: 100px;">Y2K Aesthetic</div>
+              <div class="win95-status-section">🌐 Done</div>
+              <div class="win95-status-section" style="flex: 0 0 auto; width: 120px;">🔒 Internet Zone</div>
             </div>
           </div>
         </div>

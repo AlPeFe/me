@@ -308,6 +308,123 @@
   font-size: 11px;
 }
 
+/* Internet Explorer Toolbar */
+.ie-toolbar {
+  background-color: #c0c0c0;
+  border-bottom: 1px solid #808080;
+  padding: 3px 5px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.ie-nav-button {
+  background-color: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  padding: 3px 6px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 50px;
+  justify-content: center;
+}
+
+.ie-nav-button:hover {
+  background-color: #d4d4d4;
+}
+
+.ie-nav-button:active {
+  border-color: #000000 #ffffff #ffffff #000000;
+  padding: 4px 5px 2px 7px;
+}
+
+.ie-address-bar {
+  background-color: #c0c0c0;
+  padding: 3px 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-bottom: 1px solid #808080;
+}
+
+.ie-address-label {
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+.ie-address-input {
+  flex: 1;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 3px 5px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  min-width: 0;
+}
+
+.ie-go-button {
+  background-color: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  padding: 2px 8px;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.ie-go-button:active {
+  border-color: #000000 #ffffff #ffffff #000000;
+}
+
+/* Desktop Icons */
+.win95-desktop-icons {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1;
+}
+
+.win95-desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+  gap: 5px;
+  width: 75px;
+}
+
+.win95-desktop-icon-image {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.5));
+}
+
+.win95-desktop-icon-label {
+  color: #ffffff;
+  text-shadow: 1px 1px 2px #000000;
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  background-color: transparent;
+  word-wrap: break-word;
+}
+
+.win95-desktop-icon:hover .win95-desktop-icon-label {
+  background-color: #000080;
+  outline: 1px dotted #ffffff;
+}
+
 /* Windows 95 Taskbar Style */
 .win95-taskbar {
   position: fixed;
