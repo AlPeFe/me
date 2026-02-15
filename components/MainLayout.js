@@ -1,7 +1,5 @@
-import Marquee from './Marquee.js';
 import AboutSection from './AboutSection.js';
 import TodoList from './TodoList.js';
-import SiteFooter from './SiteFooter.js';
 import Calendar from './Calendar.js';
 import Navigation from './Navigation.js';
 import RightImages from './RightImages.js';
@@ -9,25 +7,10 @@ import Carousel from './Carousel.js';
 import Taskbar from './Taskbar.js';
 
 export default {
-  components: { Marquee, AboutSection, TodoList, SiteFooter, Calendar, Navigation, RightImages, Carousel, Taskbar },
+  components: { AboutSection, TodoList, Calendar, Navigation, RightImages, Carousel, Taskbar },
   setup() {
     const { ref, onMounted, onBeforeUnmount } = Vue;
     const now = new Date();
-    const images = ref([
-      { src: './img/1a.gif', alt: 'Image 1' },
-      { src: './img/1b.gif', alt: 'Image 1' },
-      { src: './img/1c.gif', alt: 'Image 1' },
-      { src: './img/1d.gif', alt: 'Image 1' },
-      { src: './img/1e.gif', alt: 'Image 1' },
-      { src: './img/1f.gif', alt: 'Image 1' },
-      { src: './img/tomcat_button.gif', alt: 'Image 1' },
-      { src: './img/park24.gif', alt: 'Image 1' },
-      { src: './img/reshirii.gif', alt: 'Image 1' },
-      { src: './img/ecchi.gif', alt: 'Image 1' },
-      { src: './img/dk64gaming.gif', alt: 'Image 1' },
-      { src: './img/discord_now.gif', alt: 'Image 1' },
-      { src: './img/directxnow.gif', alt: 'Image 1' },
-    ]);
     const imagesRightPanel = ref([
       { src: './img/melon.gif', alt: 'Melon Image' },
       { src: './img/melon0.gif', alt: 'Melon Image 0' },
@@ -110,7 +93,6 @@ export default {
     });
 
     return {
-      images,
       imagesRightPanel,
       carouselImages,
       carouselIndex,
@@ -128,7 +110,6 @@ export default {
     <div>
       <div id="container">
         <div id="contentBox">
-          <marquee :images="images"></marquee>
           <div class="win95-window">
             <div class="win95-title-bar">
               <div class="win95-title-text">
@@ -160,7 +141,6 @@ export default {
                     </p>
                     <todo-list></todo-list>
                   </div>
-                  <site-footer></site-footer>
                 </div>
                 <div id="rightColumn">
                   <calendar :calendar="calendar" :month="month" :currentDay="currentDay" :currentMonth="currentMonth" :dayColor="dayColor" :highlightToday="highlightToday"></calendar>

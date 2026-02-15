@@ -21,9 +21,6 @@ export default {
               <img src="./img/insta.png" alt="Instagram" class="social-icon" />
             </a>
           </div>
-          <div class="construction-container">
-            <img src="./img/underconst.gif" class="construction-gif" />
-          </div>
         </div>
       </div>
     </div>
