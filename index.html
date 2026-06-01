@@ -3,207 +3,263 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>alpefe.me · hand-drawn portfolio</title>
-  <meta name="description" content="Personal portfolio of AlPeFe — hand-drawn, simple, with a bit of wiggle." />
+  <title>alpefe.me — .NET dev · Barcelona</title>
+  <meta name="description" content="Alex (AlPeFe) — .NET developer from Barcelona. Code, infra, AI agents, and a soft spot for kpop." />
   <link rel="icon" type="image/svg+xml" href="./img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Kalam:wght@400;700&family=Patrick+Hand&display=swap"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;700&display=swap"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <!-- Subtle paper grid background -->
-  <div class="paper" aria-hidden="true"></div>
-
-  <!-- SVG defs: rough wobble filter + decorations -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3" />
-        <feDisplacementMap in="SourceGraphic" scale="2.2" />
-      </filter>
-      <filter id="wobble-strong" x="-5%" y="-5%" width="110%" height="110%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7" />
-        <feDisplacementMap in="SourceGraphic" scale="3.5" />
-      </filter>
-    </defs>
-  </svg>
+  <!-- CRT scanlines + glow -->
+  <div class="crt" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
 
   <main class="page">
-    <!-- ───── HEADER ───── -->
+    <!-- ───── HEADER / TERMINAL HERO ───── -->
     <header class="hero" data-reveal>
-      <div class="avatar-wrap">
-        <div class="avatar-frame">
-          <img
-            src="https://api.dicebear.com/9.x/lorelei/svg?seed=AlPeFe&backgroundColor=ffd6e0"
-            alt="AlPeFe hand-drawn avatar"
-            class="avatar"
-          />
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+          <span class="terminal-title">~/alpefe — bash</span>
         </div>
-        <span class="avatar-doodle" aria-hidden="true"></span>
+        <pre class="terminal-body"><span class="prompt">$</span> <span class="cmd">whoami</span>
+<span class="out">alex@barcelona</span>
+<span class="prompt">$</span> <span class="cmd">cat ./bio.txt</span>
+<span class="out">.net dev from Barcelona · kpop enjoyer</span>
+<span class="prompt">$</span> <span class="cmd">cat ./stack.txt</span>
+<span class="out">C# · .NET 10 · TypeScript · Python · PowerShell · SQL</span>
+<span class="prompt">$</span> <span class="cmd">./status.sh</span>
+<span class="ok">[ok]</span> <span class="out">always tinkering · always shipping</span>
+<span class="cursor">_</span></pre>
       </div>
 
       <h1 class="name">
-        <span class="hello">hola, soy</span>
-        <span class="title">AlPeFe</span>
-        <svg class="underline" viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true">
-          <path
-            d="M2 9 C 40 2, 80 12, 120 7 S 200 3, 238 8"
-            fill="none"
-            stroke="#ff9bbd"
-            stroke-width="3"
-            stroke-linecap="round"
-          />
-        </svg>
+        <span class="bracket">[</span>
+        <span class="name-text">Alex</span>
+        <span class="bracket">]</span>
+        <span class="handle">/AlPeFe</span>
       </h1>
-
-      <p class="role">desarrollador · dibujante aficionado · humano</p>
-
-      <div class="status-badge" title="always tinkering">
-        <span class="status-dot"></span>
-        <span>siempre trasteando con algo</span>
-      </div>
+      <p class="role">// .NET dev · Barcelona · building things that talk to other things</p>
     </header>
+
+    <!-- ───── ASCII LOGO ───── -->
+    <section class="ascii-section" data-reveal>
+      <pre class="ascii-art" aria-label="AlPeFe ASCII logo">
+ █████╗ ██╗     ██████╗ ███████╗███████╗███████╗
+██╔══██╗██║    ██╔═══██╗██╔════╝██╔════╝██╔════╝
+███████║██║    ██║   ██║█████╗  █████╗  █████╗
+██╔══██║██║    ██║   ██║██╔══╝  ██╔══╝  ██╔══╝
+██║  ██║██║    ╚██████╔╝███████╗███████╗███████╗
+╚═╝  ╚═╝╚═╝     ╚═════╝ ╚══════╝╚══════╝╚══════╝
+      </pre>
+    </section>
 
     <!-- ───── ABOUT ───── -->
     <section class="card about" data-reveal>
       <h2 class="section-title">
-        <span class="doodle-icon" aria-hidden="true">✎</span>
-        sobre mí
+        <span class="hash">##</span> about.md
       </h2>
       <p>
-        Me gustan los proyectos pequeños, las cosas que se mueven un poquito
-        y los garabatos en márgenes de cuadernos. Programo, dibujo fatal y
-        escribo código que se parece a cómo pienso: un poco desordenado, pero
-        honesto.
+        Soy <span class="hl">Alex</span> — desarrollador .NET en Barcelona, trabajando en
+        <a href="https://github.com/AlPeFe" target="_blank" rel="noopener">Original Soft S.L</a>.
+        Me gusta construir cosas que se ejecutan en servidores, que se despliegan solas,
+        y que a veces se lo pasan bien.
       </p>
       <p>
-        Vivo entre terminales, cuadernos y tazas de café. Si tiene un botón,
-        lo pulso. Si no lo tiene, lo añado.
+        Ahora estoy enredado con <span class="hl">AI agents</span> (Hermes, Hanni, OpenCode),
+        <span class="hl">infra Windows</span> y un sistema médico legacy que estoy migrando
+        a .NET moderno — especificación primero, fases después.
+      </p>
+      <p>
+        Kpop enjoyer. Terminal lover. <code>git commit -m "fix"</code> profesional.
       </p>
     </section>
 
     <!-- ───── STACK ───── -->
-    <section class="stack" data-reveal>
+    <section class="card" data-reveal>
       <h2 class="section-title">
-        <span class="doodle-icon" aria-hidden="true">⚙</span>
-        con qué juego
+        <span class="hash">##</span> stack.yaml
       </h2>
-      <ul class="tags">
-        <li class="tag t-mint" style="--d:0ms">C#</li>
-        <li class="tag t-pink" style="--d:60ms">.NET</li>
-        <li class="tag t-yellow" style="--d:120ms">TypeScript</li>
-        <li class="tag t-blue" style="--d:180ms">Vue</li>
-        <li class="tag t-lav" style="--d:240ms">Python</li>
-        <li class="tag t-mint" style="--d:300ms">SQL</li>
-        <li class="tag t-pink" style="--d:360ms">Docker</li>
-        <li class="tag t-yellow" style="--d:420ms">Linux</li>
-        <li class="tag t-blue" style="--d:480ms">Git</li>
-        <li class="tag t-lav" style="--d:540ms">F#</li>
-      </ul>
+      <p class="section-sub">
+        Lenguajes y herramientas que uso a diario. No todas a la vez — pero casi siempre tengo
+        un terminal abierto.
+      </p>
+
+      <div class="stack-grid">
+        <div class="stack-col">
+          <h3 class="stack-cat">▸ languages</h3>
+          <ul class="stack-list">
+            <li><span class="kbd">C#</span> main thing, .NET 10, F# when feeling fancy</li>
+            <li><span class="kbd">TypeScript</span> web, agents, CLI tools</li>
+            <li><span class="kbd">Python</span> scripting, ML tinkering, jiggler scripts</li>
+            <li><span class="kbd">PowerShell</span> Windows infra &amp; automation</li>
+            <li><span class="kbd">SQL</span> because data lives somewhere</li>
+          </ul>
+        </div>
+
+        <div class="stack-col">
+          <h3 class="stack-cat">▸ infra &amp; ops</h3>
+          <ul class="stack-list">
+            <li><span class="kbd">Docker</span> compose, multi-stage, sometimes k8s</li>
+            <li><span class="kbd">Linux</span> WSL, Ubuntu, headless servers</li>
+            <li><span class="kbd">Git</span> trunk-based, rebases, clean history</li>
+            <li><span class="kbd">SQL Server</span> MCP, tuning, migrations</li>
+            <li><span class="kbd">SSH / WMI / WinRM</span> mixed Windows+Linux</li>
+          </ul>
+        </div>
+
+        <div class="stack-col">
+          <h3 class="stack-cat">▸ front-end</h3>
+          <ul class="stack-list">
+            <li><span class="kbd">Vue</span> reactive, simple, no drama</li>
+            <li><span class="kbd">HTML/CSS/JS</span> hand-rolled, no framework needed</li>
+            <li><span class="kbd">Three.js</span> 3D, because flat is boring</li>
+            <li><span class="kbd">Tailwind</span> only when I have to</li>
+          </ul>
+        </div>
+
+        <div class="stack-col">
+          <h3 class="stack-cat">▸ AI / agents</h3>
+          <ul class="stack-list">
+            <li><span class="kbd">Hermes Agent</span> my home-grown AI ops</li>
+            <li><span class="kbd">Hanni</span> local-first assistant (Ollama)</li>
+            <li><span class="kbd">MCP servers</span> SQL, Obsidian, more coming</li>
+            <li><span class="kbd">OpenCode</span> open source coding agent</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <!-- ───── PROJECTS ───── -->
-    <section class="projects" data-reveal>
+    <!-- ───── PROJECTS (direct from GitHub) ───── -->
+    <section class="card" data-reveal>
       <h2 class="section-title">
-        <span class="doodle-icon" aria-hidden="true">★</span>
-        cosas que he hecho
+        <span class="hash">##</span> projects/
       </h2>
+      <p class="section-sub">
+        Selección curada de repos públicos — el resto está en
+        <a href="https://github.com/AlPeFe?tab=repositories" target="_blank" rel="noopener">github.com/AlPeFe</a>.
+      </p>
+
       <div class="project-grid">
-        <a class="project p-mint" href="https://github.com/AlPeFe" target="_blank" rel="noopener">
-          <div class="project-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none">
-              <path
-                d="M24 4 C 13 4 4 13 4 24 c 0 9 6 16 14 19 c 1 0 1 -0 1 -1 v -3 c -6 1 -7 -3 -7 -3 c -1 -2 -2 -3 -2 -3 c -2 -1 0 -1 0 -1 c 2 0 3 2 3 2 c 2 3 5 2 6 2 c 0 -2 1 -3 1 -4 c -5 -1 -9 -2 -9 -10 c 0 -2 1 -4 2 -5 c 0 -1 0 -2 1 -3 c 0 0 2 0 4 1 c 1 0 3 0 4 0 c 1 0 3 0 4 0 c 2 -1 4 -1 4 -1 c 1 1 1 2 1 3 c 1 1 2 3 2 5 c 0 8 -4 9 -9 10 c 0 1 1 2 1 4 v 6 c 0 1 0 1 1 1 c 8 -3 14 -10 14 -19 C 44 13 35 4 24 4 z"
-                stroke="#3a4a3a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
-              />
-            </svg>
+        <a class="project" href="https://github.com/AlPeFe/portfolio" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-lang" style="--c:#f1e05a">JS</span>
+            <span class="project-arrow">→</span>
           </div>
-          <h3>AlPeFe / repos</h3>
-          <p>Todo lo que voy construyendo — proyectos, experimentos, cosas a medias.</p>
+          <h3>portfolio</h3>
+          <p>Alex — .NET &amp; AI Developer Portfolio. La versión "seria" de esta web.</p>
         </a>
 
-        <a class="project p-pink" href="https://github.com/AlPeFe/GamIntraStandard" target="_blank" rel="noopener">
-          <div class="project-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none">
-              <rect x="6" y="10" width="36" height="28" rx="3" stroke="#a04a64" stroke-width="2.4" />
-              <path d="M6 18 h36" stroke="#a04a64" stroke-width="2.4" />
-              <circle cx="11" cy="14" r="1.2" fill="#a04a64" />
-              <circle cx="15" cy="14" r="1.2" fill="#a04a64" />
-              <path d="M14 24 h20 M14 30 h14" stroke="#a04a64" stroke-width="2.2" stroke-linecap="round" />
-            </svg>
+        <a class="project" href="https://github.com/AlPeFe/PolaperTaskBoard" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-lang" style="--c:#3178c6">TS</span>
+            <span class="project-arrow">→</span>
           </div>
-          <h3>GamIntraStandard</h3>
-          <p>Migración de gestión médica legacy a .NET moderno. Spec-driven, por fases.</p>
+          <h3>PolaperTaskBoard</h3>
+          <p>Kanban con dependencias entre tareas, recursos globales, multi-select — hecho por Hermes Agent.</p>
         </a>
 
-        <a class="project p-yellow" href="https://github.com/AlPeFe" target="_blank" rel="noopener">
-          <div class="project-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none">
-              <path
-                d="M8 24 c 4 -8 12 -8 16 0 c 4 8 12 8 16 0"
-                stroke="#8a6a1a" stroke-width="2.4" stroke-linecap="round" fill="none"
-              />
-              <circle cx="24" cy="14" r="3" fill="#8a6a1a" />
-              <path d="M22 14 q 2 -3 4 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" />
-            </svg>
+        <a class="project" href="https://github.com/AlPeFe/hanni-obsidian-workflow" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-lang" style="--c:#e34c26">HTML</span>
+            <span class="project-arrow">→</span>
           </div>
-          <h3>experimentos</h3>
-          <p>Cajón desastre: bots, scripts, ideas a medias, prototipos rápidos.</p>
+          <h3>hanni-obsidian-workflow</h3>
+          <p>Sistema de canvas Obsidian con nodos de color, dependencias y notificaciones Telegram.</p>
         </a>
 
-        <a class="project p-blue" href="https://github.com/AlPeFe" target="_blank" rel="noopener">
-          <div class="project-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none">
-              <path d="M10 38 v-22 l14 -10 l14 10 v22" stroke="#3a5a8a" stroke-width="2.4" stroke-linejoin="round" />
-              <rect x="18" y="24" width="12" height="14" stroke="#3a5a8a" stroke-width="2.4" fill="none" />
-              <path d="M22 38 v-6 h4 v6" stroke="#3a5a8a" stroke-width="2.2" fill="none" />
-            </svg>
+        <a class="project" href="https://github.com/AlPeFe/SqlServerMcp" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-lang" style="--c:#178600">C#</span>
+            <span class="project-arrow">→</span>
           </div>
-          <h3>esta web</h3>
-          <p>Hecha a mano: HTML, CSS, un poquito de JS, y muchos garabatos SVG.</p>
+          <h3>SqlServerMcp</h3>
+          <p>MCP server para SQL Server: expone schema y reglas de negocio como recursos contextuales para LLMs.</p>
+        </a>
+
+        <a class="project" href="https://github.com/AlPeFe/tui-server-setup" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-lang" style="--c:#178600">C#</span>
+            <span class="project-arrow">→</span>
+          </div>
+          <h3>tui-server-setup</h3>
+          <p>TUI interactiva .NET 10 para setup de servidores Windows — Spectre.Console, Winget, SQL Server.</p>
+        </a>
+
+        <a class="project" href="https://github.com/AlPeFe/POLAPER.BOT" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-lang" style="--c:#a259ff">MIX</span>
+            <span class="project-arrow">→</span>
+          </div>
+          <h3>POLAPER.BOT</h3>
+          <p>AI assistant personal: LLM local, multi-agente, bot de Telegram, interfaz 3D, Gmail + Calendar. .NET 10 + React + Three.js.</p>
+        </a>
+
+        <a class="project" href="https://github.com/AlPeFe/WindowsServerAgent" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-lang" style="--c:#178600">C#</span>
+            <span class="project-arrow">→</span>
+          </div>
+          <h3>WindowsServerAgent</h3>
+          <p>Agente .NET para gestionar Windows Server vía SSH, WMI y PowerShell remoting.</p>
+        </a>
+
+        <a class="project" href="https://github.com/AlPeFe/Clean-Code-Template" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-lang" style="--c:#178600">C#</span>
+            <span class="project-arrow">→</span>
+          </div>
+          <h3>Clean-Code-Template</h3>
+          <p>Template para proyectos API limpios y sencillos. Mi punto de partida cada vez que arranco algo.</p>
         </a>
       </div>
+
+      <a class="see-all" href="https://github.com/AlPeFe?tab=repositories" target="_blank" rel="noopener">
+        <span class="prompt-mock">$</span> ls ./repos | wc -l
+        <span class="count">→ 51 repos públicos</span>
+      </a>
     </section>
 
     <!-- ───── CONTACT ───── -->
     <section class="card contact" data-reveal>
       <h2 class="section-title">
-        <span class="doodle-icon" aria-hidden="true">✉</span>
-        hablemos
+        <span class="hash">##</span> contact.sh
       </h2>
       <div class="socials">
-        <a class="social s-github" href="https://github.com/AlPeFe" target="_blank" rel="noopener" aria-label="GitHub">
+        <a class="social" href="https://github.com/AlPeFe" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24" fill="none">
             <path
               d="M12 2 C 6.5 2 2 6.6 2 12.2 c 0 4.5 2.9 8.3 6.8 9.6 c 0.5 0.1 0.7 -0.2 0.7 -0.5 v -1.7 c -2.8 0.6 -3.4 -1.4 -3.4 -1.4 c -0.4 -1.1 -1.1 -1.4 -1.1 -1.4 c -0.9 -0.6 0.1 -0.6 0.1 -0.6 c 1 0.1 1.5 1 1.5 1 c 0.9 1.5 2.3 1.1 2.9 0.8 c 0.1 -0.6 0.3 -1.1 0.6 -1.3 c -2.2 -0.3 -4.6 -1.1 -4.6 -5 c 0 -1.1 0.4 -2 1 -2.7 c -0.1 -0.3 -0.4 -1.3 0.1 -2.7 c 0 0 0.8 -0.3 2.8 1 c 0.8 -0.2 1.7 -0.3 2.5 -0.3 c 0.8 0 1.7 0.1 2.5 0.3 c 1.9 -1.3 2.8 -1 2.8 -1 c 0.5 1.4 0.2 2.4 0.1 2.7 c 0.6 0.7 1 1.6 1 2.7 c 0 3.9 -2.4 4.7 -4.6 5 c 0.4 0.3 0.7 0.9 0.7 1.9 v 2.8 c 0 0.3 0.2 0.6 0.7 0.5 c 4 -1.3 6.8 -5.1 6.8 -9.6 C 22 6.6 17.5 2 12 2 z"
               fill="currentColor"
             />
           </svg>
+          <span class="social-label">github</span>
         </a>
-        <a class="social s-mail" href="mailto:alpefe@polaper.com" aria-label="Email">
+        <a class="social" href="mailto:alpefe@polaper.com" aria-label="Email">
           <svg viewBox="0 0 24 24" fill="none">
             <rect x="3" y="5" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="2" />
             <path d="M3 6 l9 7 l9 -7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
           </svg>
+          <span class="social-label">mail</span>
         </a>
-        <a class="social s-twitter" href="https://x.com/" target="_blank" rel="noopener" aria-label="X">
+        <a class="social" href="https://github.com/AlPeFe?tab=repositories" target="_blank" rel="noopener" aria-label="Repos">
           <svg viewBox="0 0 24 24" fill="none">
-            <path
-              d="M3 3 l8 10 l-8 8 h2.5 l6.7 -7 l5.3 7 H21 l-8.5 -11 L20.5 3 H18 l-6 6.2 L7.5 3 z"
-              fill="currentColor"
-            />
+            <path d="M4 6 h16 M4 12 h16 M4 18 h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
+          <span class="social-label">repos</span>
         </a>
-        <a class="social s-rss" href="https://github.com/AlPeFe" target="_blank" rel="noopener" aria-label="RSS feed">
+        <a class="social" href="https://github.com/AlPeFe?tab=stars" target="_blank" rel="noopener" aria-label="Stars">
           <svg viewBox="0 0 24 24" fill="none">
-            <path d="M5 5 a14 14 0 0 1 14 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none" />
-            <path d="M5 11 a8 8 0 0 1 8 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none" />
-            <circle cx="6.5" cy="17.5" r="1.8" fill="currentColor" />
+            <path d="M12 3 l2.6 6 l6.4 0.5 l-4.9 4.3 l1.5 6.2 l-5.6 -3.5 l-5.6 3.5 l1.5 -6.2 l-4.9 -4.3 l6.4 -0.5 z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none" />
           </svg>
+          <span class="social-label">stars</span>
         </a>
       </div>
     </section>
@@ -211,9 +267,9 @@
     <!-- ───── FOOTER ───── -->
     <footer class="footer">
       <p>
-        hecho a mano · <span class="heart">♥</span> garabatos y CSS
+        <span class="prompt-mock">$</span> echo "built by hand · HTML + CSS + JS · no framework"
       </p>
-      <p class="signoff">— alpefe, 2026</p>
+      <p class="signoff">— alpefe · 2026</p>
     </footer>
   </main>
 

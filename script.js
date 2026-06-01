@@ -1,97 +1,93 @@
-// ──────────────────────────────────────────────
-// alpefe.me · hand-drawn portfolio
-//  · scroll reveal
-//  · cursor trail (subtle pencil dots)
-//  · wiggle boost on tag click
-// ──────────────────────────────────────────────
+// alpefe.me · minimal reveal on scroll + typing effect in terminal
 
-(() => {
-  'use strict';
+(function () {
+  // ───── reveal on scroll ─────
+  const items = document.querySelectorAll('[data-reveal]');
+  const reveal = (el) => el.classList.add('is-in');
 
-  // ─── scroll reveal ──────────────────────────
-  const reveal = (entries, obs) => {
-    for (const e of entries) {
-      if (e.isIntersecting) {
-        e.target.classList.add('is-in');
-        obs.unobserve(e.target);
-      }
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            reveal(e.target);
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
+    );
+    items.forEach((el) => io.observe(el));
+
+    // Safety net: if anything is still hidden after 1.5s, reveal it.
+    setTimeout(() => {
+      document.querySelectorAll('[data-reveal]:not(.is-in)').forEach(reveal);
+    }, 1500);
+  } else {
+    items.forEach(reveal);
+  }
+
+  // ───── type-in terminal lines ─────
+  const body = document.querySelector('.terminal-body');
+  if (!body) return;
+
+  const lines = body.querySelectorAll('span');
+  // Wrap each visual "line" (prompt..out) into a span if not already.
+  // Strategy: rebuild body incrementally.
+  const raw = body.innerHTML;
+  body.innerHTML = '';
+
+  // Split into discrete lines by detecting "prompt" markers
+  const segments = raw
+    .split(/(?=<span class="prompt">)/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  let i = 0;
+  const typeNext = () => {
+    if (i >= segments.length) {
+      // ensure cursor is at the end
+      const c = document.createElement('span');
+      c.className = 'cursor';
+      c.textContent = '_';
+      body.appendChild(c);
+      return;
+    }
+    const seg = segments[i];
+    // If it's a prompt line, animate char-by-char; if it's an <out>, fade in.
+    const isPrompt = seg.includes('class="prompt"');
+    const wrap = document.createElement('span');
+    if (isPrompt) {
+      // type each character
+      const tmp = document.createElement('span');
+      tmp.innerHTML = seg;
+      const text = tmp.textContent;
+      wrap.innerHTML = '';
+      let j = 0;
+      const tick = () => {
+        if (j > text.length) {
+          body.appendChild(wrap);
+          body.appendChild(document.createTextNode('\n'));
+          i++;
+          setTimeout(typeNext, 90);
+          return;
+        }
+        wrap.textContent = text.slice(0, j);
+        j++;
+        setTimeout(tick, 12);
+      };
+      tick();
+    } else {
+      wrap.innerHTML = seg;
+      wrap.style.opacity = '0';
+      wrap.style.transition = 'opacity 220ms';
+      body.appendChild(wrap);
+      body.appendChild(document.createTextNode('\n'));
+      requestAnimationFrame(() => (wrap.style.opacity = '1'));
+      i++;
+      setTimeout(typeNext, 220);
     }
   };
-  const io = new IntersectionObserver(reveal, {
-    threshold: 0,
-    rootMargin: '0px 0px 200px 0px',  // trigger well before reaching viewport
-  });
-  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
-
-  // Safety fallback: reveal anything still hidden after 2s
-  // (in case the page is short, in a headless browser, or IO misbehaves)
-  setTimeout(() => {
-    document.querySelectorAll('[data-reveal]:not(.is-in)').forEach(el => {
-      el.classList.add('is-in');
-    });
-  }, 2000);
-
-  // ─── cursor trail: small pencil dots ────────
-  // Stays subtle — disabled on touch + reduced motion
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-  if (!reduceMotion && !isTouch) {
-    const colors = ['#ff9bbd', '#a8d8c0', '#ffd66b', '#a8c8f0', '#c8a8f0'];
-    let lastSpawn = 0;
-    const throttle = 38; // ms between dots
-
-    document.addEventListener('mousemove', (e) => {
-      const now = performance.now();
-      if (now - lastSpawn < throttle) return;
-      lastSpawn = now;
-
-      const dot = document.createElement('span');
-      dot.className = 'cursor-dot';
-      const size = 6 + Math.random() * 6;
-      dot.style.cssText = `
-        position: fixed;
-        left: ${e.clientX - size / 2}px;
-        top: ${e.clientY - size / 2}px;
-        width: ${size}px;
-        height: ${size}px;
-        border-radius: 50%;
-        background: ${colors[Math.floor(Math.random() * colors.length)]};
-        opacity: 0.65;
-        pointer-events: none;
-        z-index: 9999;
-        transition: opacity 600ms ease, transform 600ms ease;
-      `;
-      document.body.appendChild(dot);
-      // fade out
-      requestAnimationFrame(() => {
-        dot.style.opacity = '0';
-        dot.style.transform = `translate(${(Math.random() - 0.5) * 20}px, ${(Math.random() - 0.5) * 20}px) scale(0.4)`;
-      });
-      setTimeout(() => dot.remove(), 700);
-    });
-  }
-
-  // ─── wiggle boost on tag click ──────────────
-  document.querySelectorAll('.tag').forEach(tag => {
-    tag.addEventListener('click', () => {
-      tag.style.animation = 'none';
-      // force reflow
-      void tag.offsetWidth;
-      tag.style.animation = 'gentle-wiggle 0.6s ease-in-out 2';
-      setTimeout(() => { tag.style.animation = ''; }, 1300);
-    });
-  });
-
-  // ─── friendly console signature ─────────────
-  if (window.console) {
-    console.log(
-      '%c✎ alpefe.me',
-      'font-family: Caveat, cursive; font-size: 28px; color: #a04a64;'
-    );
-    console.log(
-      '%c¿curiosidad? mírate la consola de cosas.io — me encantan los detalles que la gente esconde aquí.',
-      'color: #5a5a5a; font-style: italic;'
-    );
-  }
+  // small initial delay so reveal animation lands first
+  setTimeout(typeNext, 350);
 })();
