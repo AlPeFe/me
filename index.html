@@ -1,57 +1,222 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Polaper-Alpefe - Windows 95</title>
-  <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
-  <link rel="stylesheet" href="polaper.css">
-  <link rel="stylesheet" href="windows95.css">
-  <link rel="stylesheet" href="makeitrain.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+  <title>alpefe.me · hand-drawn portfolio</title>
+  <meta name="description" content="Personal portfolio of AlPeFe — hand-drawn, simple, with a bit of wiggle." />
+  <link rel="icon" type="image/svg+xml" href="./img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Kalam:wght@400;700&family=Patrick+Hand&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./style.css" />
 </head>
-
 <body>
-  <script src="polaperrain.js"></script>
-  <script src="https://webneko.net/n20171213.js"></script>
-  <h1 id="nl">
-    <a href="https://webneko.net">Neko</a>
-  </h1>
-  
-  <div id="app">
-    <main-layout></main-layout>
-  </div>
-  
-  <!-- Vue.js script OUTSIDE the #app div -->
-  <script type="module">
-    import MainLayout from './components/MainLayout.js';
-    import Marquee from './components/Marquee.js';
-    import AboutSection from './components/AboutSection.js';
-    import TodoList from './components/TodoList.js';
-    import SiteFooter from './components/SiteFooter.js';
-    import Calendar from './components/Calendar.js';
-    import Navigation from './components/Navigation.js';
-    import RightImages from './components/RightImages.js';
-    import Carousel from './components/Carousel.js';
-    import Taskbar from './components/Taskbar.js';
-    import DesktopIcons from './components/DesktopIcons.js';
+  <!-- Subtle paper grid background -->
+  <div class="paper" aria-hidden="true"></div>
 
-    const { createApp } = Vue;
-    createApp({})
-      .component('main-layout', MainLayout)
-      .component('marquee', Marquee)
-      .component('about-section', AboutSection)
-      .component('todo-list', TodoList)
-      .component('site-footer', SiteFooter)
-      .component('calendar', Calendar)
-      .component('navigation', Navigation)
-      .component('right-images', RightImages)
-      .component('carousel', Carousel)
-      .component('taskbar', Taskbar)
-      .component('desktop-icons', DesktopIcons)
-      .mount('#app');
-  </script>
+  <!-- SVG defs: rough wobble filter + decorations -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3" />
+        <feDisplacementMap in="SourceGraphic" scale="2.2" />
+      </filter>
+      <filter id="wobble-strong" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7" />
+        <feDisplacementMap in="SourceGraphic" scale="3.5" />
+      </filter>
+    </defs>
+  </svg>
+
+  <main class="page">
+    <!-- ───── HEADER ───── -->
+    <header class="hero" data-reveal>
+      <div class="avatar-wrap">
+        <div class="avatar-frame">
+          <img
+            src="https://api.dicebear.com/9.x/lorelei/svg?seed=AlPeFe&backgroundColor=ffd6e0"
+            alt="AlPeFe hand-drawn avatar"
+            class="avatar"
+          />
+        </div>
+        <span class="avatar-doodle" aria-hidden="true"></span>
+      </div>
+
+      <h1 class="name">
+        <span class="hello">hola, soy</span>
+        <span class="title">AlPeFe</span>
+        <svg class="underline" viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true">
+          <path
+            d="M2 9 C 40 2, 80 12, 120 7 S 200 3, 238 8"
+            fill="none"
+            stroke="#ff9bbd"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+        </svg>
+      </h1>
+
+      <p class="role">desarrollador · dibujante aficionado · humano</p>
+
+      <div class="status-badge" title="always tinkering">
+        <span class="status-dot"></span>
+        <span>siempre trasteando con algo</span>
+      </div>
+    </header>
+
+    <!-- ───── ABOUT ───── -->
+    <section class="card about" data-reveal>
+      <h2 class="section-title">
+        <span class="doodle-icon" aria-hidden="true">✎</span>
+        sobre mí
+      </h2>
+      <p>
+        Me gustan los proyectos pequeños, las cosas que se mueven un poquito
+        y los garabatos en márgenes de cuadernos. Programo, dibujo fatal y
+        escribo código que se parece a cómo pienso: un poco desordenado, pero
+        honesto.
+      </p>
+      <p>
+        Vivo entre terminales, cuadernos y tazas de café. Si tiene un botón,
+        lo pulso. Si no lo tiene, lo añado.
+      </p>
+    </section>
+
+    <!-- ───── STACK ───── -->
+    <section class="stack" data-reveal>
+      <h2 class="section-title">
+        <span class="doodle-icon" aria-hidden="true">⚙</span>
+        con qué juego
+      </h2>
+      <ul class="tags">
+        <li class="tag t-mint" style="--d:0ms">C#</li>
+        <li class="tag t-pink" style="--d:60ms">.NET</li>
+        <li class="tag t-yellow" style="--d:120ms">TypeScript</li>
+        <li class="tag t-blue" style="--d:180ms">Vue</li>
+        <li class="tag t-lav" style="--d:240ms">Python</li>
+        <li class="tag t-mint" style="--d:300ms">SQL</li>
+        <li class="tag t-pink" style="--d:360ms">Docker</li>
+        <li class="tag t-yellow" style="--d:420ms">Linux</li>
+        <li class="tag t-blue" style="--d:480ms">Git</li>
+        <li class="tag t-lav" style="--d:540ms">F#</li>
+      </ul>
+    </section>
+
+    <!-- ───── PROJECTS ───── -->
+    <section class="projects" data-reveal>
+      <h2 class="section-title">
+        <span class="doodle-icon" aria-hidden="true">★</span>
+        cosas que he hecho
+      </h2>
+      <div class="project-grid">
+        <a class="project p-mint" href="https://github.com/AlPeFe" target="_blank" rel="noopener">
+          <div class="project-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path
+                d="M24 4 C 13 4 4 13 4 24 c 0 9 6 16 14 19 c 1 0 1 -0 1 -1 v -3 c -6 1 -7 -3 -7 -3 c -1 -2 -2 -3 -2 -3 c -2 -1 0 -1 0 -1 c 2 0 3 2 3 2 c 2 3 5 2 6 2 c 0 -2 1 -3 1 -4 c -5 -1 -9 -2 -9 -10 c 0 -2 1 -4 2 -5 c 0 -1 0 -2 1 -3 c 0 0 2 0 4 1 c 1 0 3 0 4 0 c 1 0 3 0 4 0 c 2 -1 4 -1 4 -1 c 1 1 1 2 1 3 c 1 1 2 3 2 5 c 0 8 -4 9 -9 10 c 0 1 1 2 1 4 v 6 c 0 1 0 1 1 1 c 8 -3 14 -10 14 -19 C 44 13 35 4 24 4 z"
+                stroke="#3a4a3a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <h3>AlPeFe / repos</h3>
+          <p>Todo lo que voy construyendo — proyectos, experimentos, cosas a medias.</p>
+        </a>
+
+        <a class="project p-pink" href="https://github.com/AlPeFe/GamIntraStandard" target="_blank" rel="noopener">
+          <div class="project-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none">
+              <rect x="6" y="10" width="36" height="28" rx="3" stroke="#a04a64" stroke-width="2.4" />
+              <path d="M6 18 h36" stroke="#a04a64" stroke-width="2.4" />
+              <circle cx="11" cy="14" r="1.2" fill="#a04a64" />
+              <circle cx="15" cy="14" r="1.2" fill="#a04a64" />
+              <path d="M14 24 h20 M14 30 h14" stroke="#a04a64" stroke-width="2.2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3>GamIntraStandard</h3>
+          <p>Migración de gestión médica legacy a .NET moderno. Spec-driven, por fases.</p>
+        </a>
+
+        <a class="project p-yellow" href="https://github.com/AlPeFe" target="_blank" rel="noopener">
+          <div class="project-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path
+                d="M8 24 c 4 -8 12 -8 16 0 c 4 8 12 8 16 0"
+                stroke="#8a6a1a" stroke-width="2.4" stroke-linecap="round" fill="none"
+              />
+              <circle cx="24" cy="14" r="3" fill="#8a6a1a" />
+              <path d="M22 14 q 2 -3 4 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3>experimentos</h3>
+          <p>Cajón desastre: bots, scripts, ideas a medias, prototipos rápidos.</p>
+        </a>
+
+        <a class="project p-blue" href="https://github.com/AlPeFe" target="_blank" rel="noopener">
+          <div class="project-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path d="M10 38 v-22 l14 -10 l14 10 v22" stroke="#3a5a8a" stroke-width="2.4" stroke-linejoin="round" />
+              <rect x="18" y="24" width="12" height="14" stroke="#3a5a8a" stroke-width="2.4" fill="none" />
+              <path d="M22 38 v-6 h4 v6" stroke="#3a5a8a" stroke-width="2.2" fill="none" />
+            </svg>
+          </div>
+          <h3>esta web</h3>
+          <p>Hecha a mano: HTML, CSS, un poquito de JS, y muchos garabatos SVG.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- ───── CONTACT ───── -->
+    <section class="card contact" data-reveal>
+      <h2 class="section-title">
+        <span class="doodle-icon" aria-hidden="true">✉</span>
+        hablemos
+      </h2>
+      <div class="socials">
+        <a class="social s-github" href="https://github.com/AlPeFe" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2 C 6.5 2 2 6.6 2 12.2 c 0 4.5 2.9 8.3 6.8 9.6 c 0.5 0.1 0.7 -0.2 0.7 -0.5 v -1.7 c -2.8 0.6 -3.4 -1.4 -3.4 -1.4 c -0.4 -1.1 -1.1 -1.4 -1.1 -1.4 c -0.9 -0.6 0.1 -0.6 0.1 -0.6 c 1 0.1 1.5 1 1.5 1 c 0.9 1.5 2.3 1.1 2.9 0.8 c 0.1 -0.6 0.3 -1.1 0.6 -1.3 c -2.2 -0.3 -4.6 -1.1 -4.6 -5 c 0 -1.1 0.4 -2 1 -2.7 c -0.1 -0.3 -0.4 -1.3 0.1 -2.7 c 0 0 0.8 -0.3 2.8 1 c 0.8 -0.2 1.7 -0.3 2.5 -0.3 c 0.8 0 1.7 0.1 2.5 0.3 c 1.9 -1.3 2.8 -1 2.8 -1 c 0.5 1.4 0.2 2.4 0.1 2.7 c 0.6 0.7 1 1.6 1 2.7 c 0 3.9 -2.4 4.7 -4.6 5 c 0.4 0.3 0.7 0.9 0.7 1.9 v 2.8 c 0 0.3 0.2 0.6 0.7 0.5 c 4 -1.3 6.8 -5.1 6.8 -9.6 C 22 6.6 17.5 2 12 2 z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+        <a class="social s-mail" href="mailto:alpefe@polaper.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="5" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="2" />
+            <path d="M3 6 l9 7 l9 -7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
+          </svg>
+        </a>
+        <a class="social s-twitter" href="https://x.com/" target="_blank" rel="noopener" aria-label="X">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 3 l8 10 l-8 8 h2.5 l6.7 -7 l5.3 7 H21 l-8.5 -11 L20.5 3 H18 l-6 6.2 L7.5 3 z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+        <a class="social s-rss" href="https://github.com/AlPeFe" target="_blank" rel="noopener" aria-label="RSS feed">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M5 5 a14 14 0 0 1 14 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none" />
+            <path d="M5 11 a8 8 0 0 1 8 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none" />
+            <circle cx="6.5" cy="17.5" r="1.8" fill="currentColor" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ───── FOOTER ───── -->
+    <footer class="footer">
+      <p>
+        hecho a mano · <span class="heart">♥</span> garabatos y CSS
+      </p>
+      <p class="signoff">— alpefe, 2026</p>
+    </footer>
+  </main>
+
+  <script src="./script.js" defer></script>
 </body>
 </html>
